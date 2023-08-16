@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+     <h3>Kayıt Olun</h3>
+     <hr>
+    <form method="post">
+
+        <!-- Bu satırlar, render_field fonksiyonunu kullanarak formun farklı alanlarını (name, username, email, vb.) render eder. 
+        Bu, form elemanlarının düzenini ve görünümünü kontrol etmek için kullanılır. -->
+
+        {{ render_field(form.name) }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+        <button type="submit" class="btn btn-primary">Kayıt ol</button>
+    </form>
+
+{% endblock %}

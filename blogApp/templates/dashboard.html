@@ -1,0 +1,40 @@
+<style>
+    #add{
+        margin-bottom: 0.5rem;
+    }
+</style>
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol Paneli</h3>
+<small>Hoşgeldin, {{ session["username"] }}</small>
+<hr>
+<a id="add" href="/addArticle" class="btn btn-danger">Makale Ekle</a>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Başlık</th>
+        <th scope="col">Yazar</th>
+        <th scope="col">Tarih</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+            <th scope="row">{{ article.id }}</th>
+            <td><a href="/article/{{ article.id }}">{{ article.title }}</a></td>
+            <td>@{{ article.author }}</td>
+            <td>{{ article.creatingDate }}</td>
+            <td><a href="/edit/{{ article.id }}">Güncelle</a></td>
+            <td><a href="/delete/{{ article.id }}">Sil</a></td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock body %}

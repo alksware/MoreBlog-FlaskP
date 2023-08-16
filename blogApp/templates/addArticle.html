@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Makale Oluştur</h3>
+<hr>
+{% from "includes/formhelpers.html" import render_field %}
+
+<form method="post">
+
+   <!-- Bu satırlar, render_field fonksiyonunu kullanarak formun farklı alanlarını (name, username, email, vb.) render eder. 
+   Bu, form elemanlarının düzenini ve görünümünü kontrol etmek için kullanılır. -->
+
+   {{ render_field(form.title, class = "form-control") }}
+   {{ render_field(form.content, class = "form-control") }}
+  
+   <button type="submit" class="btn btn-danger">Oluştur</button>
+</form>
+
+{% endblock body %}

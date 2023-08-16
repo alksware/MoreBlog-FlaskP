@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h4>{{ article.title }}</h4>
+<hr>
+<p>Yazar : @{{ article.author }}</p>
+<p>Tarih : {{ article.creatingDate }}</p>
+<hr>
+<p>{{ article.content|safe }}</p>
+{% endblock body %}
