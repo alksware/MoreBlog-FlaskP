@@ -1,16 +1,50 @@
 <style>
-    li{
-        list-style: none;
-    }
-    li:hover{
-        list-style: circle;
-    }
+  li {
+      list-style: none;
+  }
+  
+  li:hover {
+      list-style: circle;
+  }
+  
+  .comments {
+      color: #0056B3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5rem;
+      margin-left: 2rem;
+  }
+  
+  .comment-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .comment-form textarea {
+      margin-top: 3rem;
+      width: 75%;
+      margin-bottom: 2rem;
+  }
+
+  #articles {
+      display: flex;
+      justify-content: center;
+  }
+
+  h3 {
+      display: flex;
+      justify-content: center;
+  }
+
+
+</style>
 
 </style>
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>Makaleler</h3>
 
 <form action="/search" method="post" class="input-group">
   <input type="search" name="keyword" class="form-control rounded" placeholder="Makale Ara" aria-label="Search" aria-describedby="search-addon" />
@@ -18,6 +52,7 @@
 </form>
 
 </div>
+<h3>Makaleler</h3>
 <hr>
 <table class="table">
     <thead class="thead-dark">
@@ -38,5 +73,8 @@
           </tr>
         {% endfor %}
     </tbody>
-  </table>
+</table>
+
+
+
 {% endblock body %}

@@ -253,9 +253,43 @@ def search():
             return render_template("articles.html",articles = articles)
 
 
+@app.route("/userProfile/<string:profil>")
+@loginRequied
+def userProfile(profil):
+    cursor = mysql.connection.cursor()
+    query = "SELECT * FROM users WHERE username = %(profil)s" #%(profil)s, <string:profil>'ın sql hali
+    result = cursor.execute(query, {"profil": profil}) #%(profil)s değeri dict biçiminde değer buluyor
+    if result > 0 :
+        if profil == session["username"]:
+            queryUser = "select * from users where username = %s"
+            result = cursor.execute(queryUser,(session["username"],))
+            userData = cursor.fetchone()
+            if userData:
+                queryArticle = "SELECT * FROM articles WHERE author = %s"
+                result = cursor.execute(queryArticle, (session["username"],))
+                articles = cursor.fetchall() 
+                informations = {
+                    "name": userData["name"],
+                    "userMail": userData["email"],
+                    "userNick": userData["username"],
+                    "userRegisterDate": userData["registeredDate"],
+                    "articleCount": len(articles),  # Makale sayısını alıyoruz ve dict formuna getiriyoruz
+                    "level" :  len(articles)
+                }
+                return render_template("userProfile.html", informations=informations)
+
+        else:
+            flash("Bu profili görüntülemeye yetkiniz yok", "danger")
+            return redirect(url_for("index"))
+    else:
+        flash("Böyle bir kullanıcı yok", "danger")
+        return redirect(url_for("index"))
+
+
 class ArticleForm(Form):
     title = StringField("Makale Başlığı",validators=[validators.length(min=5, max=100)])
     content = TextAreaField("Makale İçeriği",validators=[validators.length(min = 150)])
+
 
 if __name__ == "__main__":
     app.run(debug=True)

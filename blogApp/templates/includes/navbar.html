@@ -1,3 +1,12 @@
+<style>
+    .level-beginner{
+        border: 12px solid bisque;
+        border-radius: 100%;
+        margin-top: 0.6rem;
+    }
+</style>
+
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
   <a class="navbar-brand" href="/">MoreBlog</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,9 +29,12 @@
             <a class="nav-link" href="/dashboard">Kontrol Paneli</a>
           </li>
             <span class="verticalLine" 
-            style="border-left: 2px solid white; height: 2rem; margin-top: 4px; margin-left: 1rem; padding-left: 1rem;"></span id="line">
-          <li class="nav-item active">
-            <a class="nav-link" href="">{{ session["username"] }}</a>
+            style="border-left: 2px solid white; height: 2rem; margin-top: 4px; margin-left: 2rem; padding-left: 2rem;"></span id="line">
+          <li style="display: flex;" class="nav-item active">
+            <a href='/userProfile/{{ session["username"] }}'>
+                <div class="level-beginner"></div>
+                <a class="nav-link" href="">{{ session["username"] }}</a> 
+            </a>
            </li>
           <li class="nav-item active">
               <a class="nav-link" href="/logout">Çıkış</a>

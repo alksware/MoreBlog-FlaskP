@@ -1,0 +1,36 @@
+<style>
+    span{
+        font-family: Impact;
+        font-size: 1.2rem;
+    }
+    #updateBtn{
+        margin-top: 1rem;
+    }
+</style>
+{% extends "layout.html" %}
+
+{% block body %}
+    <h3>Kullanıcı Profili</h3>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item"><span>İsim:</span> {{ informations.name }}  </li>
+        <li class="list-group-item"><span>Kullanıcı Adı:</span> {{ informations.userNick }} </li>
+        <li class="list-group-item"><span>Email:</span> {{ informations.userMail }} </li>
+        <li class="list-group-item"><span>Makale Sayısı:</span> {{ informations.articleCount }}</li>
+        {% if informations.level < 5 %}
+            <li class="list-group-item"><span>Yazar Seviyesi:</span> 0</li>
+        {% elif informations.level >= 5 %}
+            <li class="list-group-item"><span>Yazar Seviyesi:</span> 1</li>
+        {% elif informations.level >= 25 %}   
+            <li class="list-group-item"><span>Yazar Seviyesi:</span> 2</li>
+        {% elif informations.level >= 50 %}   
+            <li class="list-group-item"><span>Yazar Seviyesi:</span> 3</li>     
+        {% elif informations.level >= 75 %}   
+            <li class="list-group-item"><span>Yazar Seviyesi:</span> 4</li>  
+        {% elif informations.level >= 100 %}   
+            <li class="list-group-item"><span>Yazar Seviyesi:</span> 5</li>     
+        {% endif %}
+        <li class="list-group-item"><span>Kayıt Tarihi:</span> {{ informations.userRegisterDate }} </li>
+    </ul>
+
+{% endblock  %}
